@@ -66,28 +66,28 @@ def get_size(bytes, suffix="B"):
         if bytes < factor:
             return f"{bytes:.2f}{unit}{suffix}"
         bytes /= factor
-def determined_args():
-    arguments = get_args()
-    columns = arguments.columns
-    sort_by = arguments.sort_by
-    number_of_processes = int(arguments.n)
-    update = arguments.update
-    output_file = arguments.output
 
+arguments = get_args()
+columns = arguments.columns
+sort_by = arguments.sort_by
+number_of_processes = int(arguments.n)
+update = arguments.update
+output_file = arguments.output
+
+process_info = get_process()
+df = construct_dataframes_for_processes(process_info)
+if number_of_processes == 0:
+    print(df.to_string())
+elif number_of_processes > 0:
+    print(df.head(number_of_processes).to_string())
+while update:
+    time.sleep(1)
     process_info = get_process()
     df = construct_dataframes_for_processes(process_info)
+    os.system("cls") if "nt" in os.name else os.system("clear")
     if number_of_processes == 0:
         print(df.to_string())
     elif number_of_processes > 0:
         print(df.head(number_of_processes).to_string())
-    while update:
-        time.sleep(1)
-        process_info = get_process()
-        df = construct_dataframes_for_processes(process_info)
-        os.system("cls") if "nt" in os.name else os.system("clear")
-        if number_of_processes == 0:
-            print(df.to_string())
-        elif number_of_processes > 0:
-            print(df.head(number_of_processes).to_string())
-        time.sleep(1)
-            
+    time.sleep(1)
+        
