@@ -10,7 +10,7 @@ print(process_Hacker)
 def process_information():
     print("Process Information")
     print("==================")
-    subprocess.call(['python', 'procinfo.py', '-o', 'output.json', '-c', 'columns,data_usage,memory_usage,name,username,num_threads,s_nice,status', '-s', 'memory_usage', '-n', '15', '-u'], shell=True)
+    subprocess.call(['python', 'procinfo.py', '-o', 'output.json', '-c', 'memory_usage,name,username,num_threads,s_nice,status', '-s', 'memory_usage', '-n', '15', '-u'], shell=True)
     time.sleep(1)
     print("==================")
 def process_usage():
